@@ -1,4 +1,7 @@
-resource "aws_s3_bucket" "webinar" {
-  bucket = "roman_pospishenko_webinar_bucket"
+provider "aws" {
+  region = "eu-west-1"
+}
 
+resource "aws_s3_bucket" "webinar" {
+  bucket = "roman_pospishenko_bucket"
 }
