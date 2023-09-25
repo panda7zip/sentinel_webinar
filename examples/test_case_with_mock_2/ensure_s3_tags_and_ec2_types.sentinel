@@ -1,0 +1,44 @@
+import "tfplan/v2" as tfplan
+
+// Initialize an empty list to hold IDs of buckets without tags
+buckets_without_tags = []
+
+// Loop through all resource changes in the plan
+for tfplan.resource_changes as _, rc {
+
+    // Check if the resource is an S3 bucket and is being created or updated
+    if rc.type is "aws_s3_bucket" and (rc.change.actions contains "create" or rc.change.actions contains "update") {
+
+        // Check if the bucket has no tags and if so, append the bucket ID to the list
+        if rc.change.after.tags is null or length(rc.change.after.tags) == 0 {
+            print(rc.change.after.bucket, "doesn't have tags")
+            append(buckets_without_tags, rc.change.after.bucket)
+        }
+    }
+}
+
+allowed_instance_types = ["t3.medium"]
+noncompliant_instances = []
+
+// Loop through all resource changes in the plan
+for tfplan.resource_changes as _, rc {
+
+    // Check if the resource is an EC2 instance and is being created or updated
+    if rc.type is "aws_instance" and (rc.change.actions contains "create" or rc.change.actions contains "update") {
+
+        // Check if the bucket has no tags and if so, append the bucket ID to the list
+        if rc.change.after.instance_type not in allowed_instance_types {
+            print(rc.address, "instance type not allowed")
+            append(noncompliant_instances, rc.address)
+        }
+    }
+}
+
+// Check if the length of the buckets_without_tags list is 0
+validated_buckets = length(buckets_without_tags) == 0
+validated_instances = length(noncompliant_instances) == 0
+
+// Main rule
+main = rule {
+    validated_buckets is true and validated_instances is true
+}

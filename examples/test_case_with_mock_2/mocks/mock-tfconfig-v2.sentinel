@@ -1,0 +1,176 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"constant_value": "eu-west-1",
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "",
+	},
+}
+
+resources = {
+	"aws_instance.this_large": {
+		"address": "aws_instance.this_large",
+		"config": {
+			"ami": {
+				"references": [
+					"data.aws_ami.this.id",
+					"data.aws_ami.this",
+				],
+			},
+			"instance_type": {
+				"constant_value": "t3.medium",
+			},
+			"tags": {
+				"constant_value": {
+					"Name": "webinar-t3-large",
+				},
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "this_large",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_instance",
+	},
+	"aws_instance.this_medium": {
+		"address": "aws_instance.this_medium",
+		"config": {
+			"ami": {
+				"references": [
+					"data.aws_ami.this.id",
+					"data.aws_ami.this",
+				],
+			},
+			"instance_type": {
+				"constant_value": "t3.medium",
+			},
+			"tags": {
+				"constant_value": {
+					"Name": "webinar-t3-medium",
+				},
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "this_medium",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_instance",
+	},
+	"aws_s3_bucket.webinar": {
+		"address": "aws_s3_bucket.webinar",
+		"config": {
+			"bucket": {
+				"constant_value": "sentinel_webinar_bucket_without_tags",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "webinar",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+	"aws_s3_bucket.webinar_with_tags": {
+		"address": "aws_s3_bucket.webinar_with_tags",
+		"config": {
+			"bucket": {
+				"constant_value": "sentinel_webinar_bucket_with_tags",
+			},
+			"tags": {
+				"constant_value": {
+					"Environment": "dev",
+				},
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "webinar_with_tags",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_s3_bucket",
+	},
+	"data.aws_ami.this": {
+		"address": "data.aws_ami.this",
+		"config": {
+			"filter": [
+				{
+					"name": {
+						"constant_value": "architecture",
+					},
+					"values": {
+						"constant_value": [
+							"arm64",
+						],
+					},
+				},
+				{
+					"name": {
+						"constant_value": "name",
+					},
+					"values": {
+						"constant_value": [
+							"al2023-ami-2023*",
+						],
+					},
+				},
+			],
+			"most_recent": {
+				"constant_value": true,
+			},
+			"owners": {
+				"constant_value": [
+					"amazon",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "this",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_ami",
+	},
+}
+
+provisioners = {}
+
+variables = {}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

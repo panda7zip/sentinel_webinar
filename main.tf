@@ -22,7 +22,7 @@ resource "aws_instance" "this_medium" {
 
 resource "aws_instance" "this_large" {
   ami = data.aws_ami.this.id
-  instance_type = "t3.medium"
+  instance_type = "t3.large"
   tags = {
     Name = "webinar-t3-large"
   }

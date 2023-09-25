@@ -1,0 +1,164 @@
+import "strings"
+import "types"
+
+_modules = {
+	"root": {
+		"data": {
+			"aws_ami": {
+				"this": {
+					"config": {
+						"filter": [
+							{
+								"name": "architecture",
+								"values": [
+									"arm64",
+								],
+							},
+							{
+								"name": "name",
+								"values": [
+									"al2023-ami-2023*",
+								],
+							},
+						],
+						"most_recent": true,
+						"owners": [
+							"amazon",
+						],
+					},
+					"provisioners": null,
+					"references": {
+						"filter": [
+							{
+								"name":   [],
+								"values": [],
+							},
+							{
+								"name":   [],
+								"values": [],
+							},
+						],
+						"most_recent": [],
+						"owners":      [],
+					},
+				},
+			},
+		},
+		"modules": {},
+		"outputs": {},
+		"providers": {
+			"aws": {
+				"alias": {
+					"": {
+						"config": {
+							"region": "eu-west-1",
+						},
+						"references": {
+							"region": [],
+						},
+						"version": "",
+					},
+				},
+				"config": {
+					"region": "eu-west-1",
+				},
+				"references": {
+					"region": [],
+				},
+				"version": "",
+			},
+		},
+		"resources": {
+			"aws_instance": {
+				"this_large": {
+					"config": {
+						"instance_type": "t3.medium",
+						"tags": {
+							"Name": "webinar-t3-large",
+						},
+					},
+					"provisioners": null,
+					"references": {
+						"ami": [
+							"data.aws_ami.this.id",
+							"data.aws_ami.this",
+						],
+						"instance_type": [],
+						"tags":          [],
+					},
+				},
+				"this_medium": {
+					"config": {
+						"instance_type": "t3.medium",
+						"tags": {
+							"Name": "webinar-t3-medium",
+						},
+					},
+					"provisioners": null,
+					"references": {
+						"ami": [
+							"data.aws_ami.this.id",
+							"data.aws_ami.this",
+						],
+						"instance_type": [],
+						"tags":          [],
+					},
+				},
+			},
+			"aws_s3_bucket": {
+				"webinar": {
+					"config": {
+						"bucket": "sentinel_webinar_bucket_without_tags",
+					},
+					"provisioners": null,
+					"references": {
+						"bucket": [],
+					},
+				},
+				"webinar_with_tags": {
+					"config": {
+						"bucket": "sentinel_webinar_bucket_with_tags",
+						"tags": {
+							"Environment": "dev",
+						},
+					},
+					"provisioners": null,
+					"references": {
+						"bucket": [],
+						"tags":   [],
+					},
+				},
+			},
+		},
+		"variables": {},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+modules = _modules.root.modules
+providers = _modules.root.providers
+resources = _modules.root.resources
+variables = _modules.root.variables
+outputs = _modules.root.outputs

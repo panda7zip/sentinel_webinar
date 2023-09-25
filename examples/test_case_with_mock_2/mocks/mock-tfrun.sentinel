@@ -1,0 +1,53 @@
+id = "run-UHsZMcVnk9eBqirX"
+created_at = "2023-09-25T14:37:30.160Z"
+created_by = "gh-webhooks-webinar_demo-Qc8x6xNFG3"
+message = "fix ec2 instances naming"
+commit_sha = "5a9c357ccc9b40ef95ee1ccc46a800af2de72b3c"
+speculative = false
+is_destroy = false
+refresh = true
+refresh_only = false
+replace_addrs = null
+target_addrs = null
+project = {
+	"id":   "prj-E75KG65PDuprPrZm",
+	"name": "webinar",
+}
+
+variables = {
+	"AWS_ACCESS_KEY_ID": {
+		"category":  "terraform",
+		"sensitive": true,
+	},
+	"AWS_SECRET_ACCESS_KEY": {
+		"category":  "terraform",
+		"sensitive": true,
+	},
+}
+
+organization = {
+	"name": "webinar_demo",
+}
+
+workspace = {
+	"auto_apply":     false,
+	"created_at":     "2023-09-24T09:22:39.903Z",
+	"description":    null,
+	"execution_mode": "default",
+	"id":             "ws-UM1ZaZRHVXsiBt4t",
+	"name":           "sentinel_webinar",
+	"tags":           [],
+	"vcs_repo": {
+		"branch":             "",
+		"display_identifier": "panda7zip/sentinel_webinar",
+		"identifier":         "panda7zip/sentinel_webinar",
+		"ingress_submodules": false,
+	},
+	"working_directory": "",
+}
+
+cost_estimate = {
+	"delta_monthly_cost":    "59.904",
+	"prior_monthly_cost":    "0.0",
+	"proposed_monthly_cost": "59.904",
+}
