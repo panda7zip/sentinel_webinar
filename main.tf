@@ -1,7 +1,29 @@
-provider "aws" {
-  region = "eu-west-1"
+# S3 buckets
+resource "aws_s3_bucket" "webinar" {
+  bucket = "sentinel_webinar_bucket_without_tags"
 }
 
-resource "aws_s3_bucket" "webinar" {
-  bucket = "roman_pospishenko_bucket"
+resource "aws_s3_bucket" "webinar_with_tags" {
+  bucket = "sentinel_webinar_bucket_with_tags"
+  tags = {
+    "Environment" = "dev"
+  }
+}
+
+
+# EC2 Instances
+resource "aws_instance" "this" {
+  ami = data.aws_ami.this.id
+  instance_type = "t3.medium"
+  tags = {
+    Name = "webinar-t3-medium"
+  }
+}
+
+resource "aws_instance" "this" {
+  ami = data.aws_ami.this.id
+  instance_type = "t3.medium"
+  tags = {
+    Name = "webinar-t3-large"
+  }
 }

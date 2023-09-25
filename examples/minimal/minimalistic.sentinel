@@ -1,0 +1,7 @@
+first = 2
+second = 1
+
+print("first digit is", 1)
+print("second digit is ", 2)
+
+main = first > second
