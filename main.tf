@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "webinar_with_tags" {
 
 
 # EC2 Instances
-resource "aws_instance" "this" {
+resource "aws_instance" "this_medium" {
   ami = data.aws_ami.this.id
   instance_type = "t3.medium"
   tags = {
@@ -20,7 +20,7 @@ resource "aws_instance" "this" {
   }
 }
 
-resource "aws_instance" "this" {
+resource "aws_instance" "this_large" {
   ami = data.aws_ami.this.id
   instance_type = "t3.medium"
   tags = {
