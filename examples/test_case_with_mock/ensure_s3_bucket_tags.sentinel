@@ -1,16 +1,26 @@
 import "tfplan/v2" as tfplan
 
-s3_buckets = filter tfplan.resource_changes as _, rc {
-    rc.type is "aws_s3_bucket" and
-    (rc.change.actions contains "create" or rc.change.actions is ["update"])
-}
+// Initialize an empty list to hold IDs of buckets without tags
+buckets_without_tags = []
 
-bucket_tags = rule {
-    all s3_buckets as _, instances {
-        instances.change.after.tags is not null
+// Loop through all resource changes in the plan
+for tfplan.resource_changes as _, rc {
+
+    // Check if the resource is an S3 bucket and is being created or updated
+    if rc.type is "aws_s3_bucket" and (rc.change.actions contains "create" or rc.change.actions contains "update") {
+
+        // Check if the bucket has no tags and if so, append the bucket ID to the list
+        if rc.change.after.tags is null or length(rc.change.after.tags) == 0 {
+            print(rc.change.after.bucket, "doesn't have tags")
+            append(buckets_without_tags, rc.change.after.bucket)
+        }
     }
 }
 
+// Check if the length of the buckets_without_tags list is 0
+validated_buckets = length(buckets_without_tags) == 0
+
+// Main rule
 main = rule {
-    bucket_tags
+    validated_buckets is true
 }
