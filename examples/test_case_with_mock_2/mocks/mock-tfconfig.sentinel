@@ -72,7 +72,7 @@ _modules = {
 			"aws_instance": {
 				"this_large": {
 					"config": {
-						"instance_type": "t3.medium",
+						"instance_type": "t3.large",
 						"tags": {
 							"Name": "webinar-t3-large",
 						},

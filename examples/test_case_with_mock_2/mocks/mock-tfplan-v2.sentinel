@@ -19,7 +19,7 @@ planned_values = {
 				"credit_specification": [],
 				"get_password_data":    false,
 				"hibernation":          null,
-				"instance_type":        "t3.medium",
+				"instance_type":        "t3.large",
 				"launch_template":      [],
 				"source_dest_check":    true,
 				"tags": {
@@ -121,7 +121,7 @@ resource_changes = {
 				"credit_specification": [],
 				"get_password_data":    false,
 				"hibernation":          null,
-				"instance_type":        "t3.medium",
+				"instance_type":        "t3.large",
 				"launch_template":      [],
 				"source_dest_check":    true,
 				"tags": {
@@ -415,7 +415,7 @@ raw = {
 							],
 						},
 						"instance_type": {
-							"constant_value": "t3.medium",
+							"constant_value": "t3.large",
 						},
 						"tags": {
 							"constant_value": {
@@ -564,7 +564,7 @@ raw = {
 						"credit_specification": [],
 						"get_password_data":    false,
 						"hibernation":          null,
-						"instance_type":        "t3.medium",
+						"instance_type":        "t3.large",
 						"launch_template":      [],
 						"source_dest_check":    true,
 						"tags": {
@@ -824,7 +824,7 @@ raw = {
 					"credit_specification": [],
 					"get_password_data":    false,
 					"hibernation":          null,
-					"instance_type":        "t3.medium",
+					"instance_type":        "t3.large",
 					"launch_template":      [],
 					"source_dest_check":    true,
 					"tags": {

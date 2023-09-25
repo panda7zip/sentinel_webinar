@@ -1,6 +1,9 @@
 # S3 buckets
 resource "aws_s3_bucket" "webinar" {
   bucket = "sentinel_webinar_bucket_without_tags"
+  tags = {
+    "Environment" = "dev"
+  }
 }
 
 resource "aws_s3_bucket" "webinar_with_tags" {
@@ -20,10 +23,10 @@ resource "aws_instance" "this_medium" {
   }
 }
 
-resource "aws_instance" "this_large" {
+resource "aws_instance" "this_one_more_medium" {
   ami = data.aws_ami.this.id
-  instance_type = "t3.large"
+  instance_type = "t3.medium"
   tags = {
-    Name = "webinar-t3-large"
+    Name = "webinar-t3-medium2"
   }
 }

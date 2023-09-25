@@ -14,7 +14,7 @@ _modules = {
 							"credit_specification": [],
 							"get_password_data":    false,
 							"hibernation":          null,
-							"instance_type":        "t3.medium",
+							"instance_type":        "t3.large",
 							"launch_template":      [],
 							"source_dest_check":    true,
 							"tags": {
@@ -156,7 +156,7 @@ _modules = {
 							},
 							"instance_type": {
 								"computed": false,
-								"new":      "t3.medium",
+								"new":      "t3.large",
 								"old":      "",
 							},
 							"ipv6_address_count": {

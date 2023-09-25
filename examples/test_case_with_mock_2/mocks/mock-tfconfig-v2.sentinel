@@ -27,7 +27,7 @@ resources = {
 				],
 			},
 			"instance_type": {
-				"constant_value": "t3.medium",
+				"constant_value": "t3.large",
 			},
 			"tags": {
 				"constant_value": {

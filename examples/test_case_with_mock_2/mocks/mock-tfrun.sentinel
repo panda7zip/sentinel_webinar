@@ -1,8 +1,8 @@
-id = "run-UHsZMcVnk9eBqirX"
-created_at = "2023-09-25T14:37:30.160Z"
+id = "run-9eT1yFj2qTrZGePa"
+created_at = "2023-09-25T15:02:01.432Z"
 created_by = "gh-webhooks-webinar_demo-Qc8x6xNFG3"
-message = "fix ec2 instances naming"
-commit_sha = "5a9c357ccc9b40ef95ee1ccc46a800af2de72b3c"
+message = "fix noncompliant instance type"
+commit_sha = "13506766af97a7d97d1a10677793f90d25768809"
 speculative = false
 is_destroy = false
 refresh = true
@@ -44,10 +44,4 @@ workspace = {
 		"ingress_submodules": false,
 	},
 	"working_directory": "",
-}
-
-cost_estimate = {
-	"delta_monthly_cost":    "59.904",
-	"prior_monthly_cost":    "0.0",
-	"proposed_monthly_cost": "59.904",
 }
